@@ -1,40 +1,66 @@
 package com.ipartek.formacion;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Aula {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	static Person p1;
 
-		//declarar array con nombre alumnos
+	public static void main(String[] args) {
+
+		// declarar array listo con personas.
+
+		ArrayList<Person> alumnosList = new ArrayList<Person>();
+		p1 = new Person("Andoni", 26, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Arkaitz", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Veronica", 0, 'm');
+		alumnosList.add(p1);
+		p1 = new Person("EderIbañez", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("JonAntolin", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Asier", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Manu", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("EderSerna", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Jose Luis", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Aritz", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Mounir", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Jon Carrasco", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Gaizka", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Eduardo", 0, 'h');
+		alumnosList.add(p1);
+		p1 = new Person("Borja", 0, 'h');
+		alumnosList.add(p1);
+
+		int n = (int) (Math.random() * alumnosList.size());
+
+		// mostrar voluntario para leer
+		System.out.println(alumnosList.get(n));
 		
-		String[] alumnos = {"Andoni",
-							"Arkaitz",
-							"Veronica", 
-							"EderIbañez", 
-							"JonAntolin", 
-							"Asier", 
-							"Manu", 
-							"EderSerna",
-							"Jose Luis",
-							"Aritz", 
-							"Mounir", 
-							"Jon Carrasco", 
-							"Gaizka", 
-							"Eduardo",
-							"Borja"};
-		
-		
-		//generar numero aleatorio de 0 - alumnos.length
-		
-		int n =(int)(Math.random()*alumnos.length);
-		
-		
-		//mostrar voluntario para leer
+		// declarar array con nombre alumnos
+
+		String[] alumnos = { "Andoni", "Arkaitz", "Veronica", "EderIbañez", "JonAntolin", "Asier", "Manu", "EderSerna",
+				"Jose Luis", "Aritz", "Mounir", "Jon Carrasco", "Gaizka", "Eduardo", "Borja" };
+
+		// generar numero aleatorio de 0 - alumnos.length
+
+		n = (int) (Math.random() * alumnos.length);
+
+		// mostrar voluntario para leer
 		System.out.println(alumnos[n]);
-		
+
 		///////////////////////////////////////////////////////////////////
 
 		Employee e1 = new Employee("Logan Paul", 23, 'h', 1, 14500000f);
@@ -57,8 +83,8 @@ public class Aula {
 		System.out.println(e8);
 		System.out.println(e9);
 		System.out.println(e10);
-		
-		Employee[] youtubers = new Employee[10]; 
+
+		Employee[] youtubers = new Employee[10];
 		youtubers[0] = e1;
 		youtubers[1] = e2;
 		youtubers[2] = e3;
@@ -75,19 +101,17 @@ public class Aula {
 		System.out.println("//////////////////////////////////");
 		System.out.println("//////////////////////////////////");
 		System.out.println("//////////////////////////////////");
-		
+
 		DecimalFormat dc = new DecimalFormat("##,###,### $");
-		
+
 		Employee emp = null;
-		
+
 		for (int i = 0; i < youtubers.length; i++) {
-			
+
 			emp = youtubers[i];
-			//numero, nombre, salario
-			System.out.println((i+1)+". "+emp.getNombre()+" "+dc.format(emp.getSalario()));
+			// numero, nombre, salario
+			System.out.println((i + 1) + ". " + emp.getNombre() + " " + dc.format(emp.getSalario()));
 		}
 	}
 
-	
-	
 }
