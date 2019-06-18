@@ -2,15 +2,15 @@ package com.ipartek.formacion;
 
 public class Youtube {
 
-	private static final int LONGITUD_CODIGO = 11;
-	private static final int LONGITUD_MIN_TITULO = 2;
-	private static final int LONGITUD_MAX_TITULO = 150;
-	private static final String URL = "https://www.youtube.com/watch?v=";
+	public static final int LONGITUD_CODIGO = 11;
+	public static final int LONGITUD_MIN_TITULO = 2;
+	public static final int LONGITUD_MAX_TITULO = 150;
+	public static final String URL = "https://www.youtube.com/watch?v=";
 	// propiedades
 
 	private String titulo;// minimo 2 letras maximo 150
-	private String codigo;
-	private int reproducciones;
+	private String codigo; //exactamente 11
+	private int reproducciones; // >= 0 
 
 	// constructores
 
@@ -23,8 +23,8 @@ public class Youtube {
 		this();/*
 		this.titulo = titulo;
 		this.codigo = codigo;*/
-		setTitulo(titulo);
-		setCodigo(codigo);
+		this.setTitulo(titulo);
+		this.setCodigo(codigo);
 		this.reproducciones = 0;
 		
 	}
@@ -63,8 +63,18 @@ public class Youtube {
 		return reproducciones;
 	}
 
-	public void setReproducciones(int reproducciones) {
-		this.reproducciones = reproducciones;
+	public void setReproducciones(int reproducciones) throws Exception {
+		
+		if(reproducciones >= 0) {
+
+			this.reproducciones = reproducciones;
+			
+		} else {
+			
+			throw new Exception("El numero introducido es inferior a 0");
+			
+		}
+		
 	}
 
 	
