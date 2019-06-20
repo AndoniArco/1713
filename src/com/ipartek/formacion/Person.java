@@ -23,6 +23,11 @@ public class Person {
 		this.sexo = 'i';
 	}
 
+	public Person(String nombre) {
+		this();
+		this.nombre = nombre;
+	}
+	
 	public Person(String nombre, int edad, char sexo) {
 		this();
 		this.nombre = nombre;

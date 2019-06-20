@@ -6,49 +6,32 @@ import java.util.Date;
 
 public class Aula {
 
-	static Person p1;
-
 	public static void main(String[] args) {
 
 		// declarar array listo con personas.
 
 		ArrayList<Person> alumnosList = new ArrayList<Person>();
-		p1 = new Person("Andoni", 26, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Arkaitz", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Veronica", 0, 'm');
-		alumnosList.add(p1);
-		p1 = new Person("EderIbañez", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("JonAntolin", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Asier", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Manu", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("EderSerna", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Jose Luis", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Aritz", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Mounir", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Jon Carrasco", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Gaizka", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Eduardo", 0, 'h');
-		alumnosList.add(p1);
-		p1 = new Person("Borja", 0, 'h');
-		alumnosList.add(p1);
+		alumnosList.add(new Person("Andoni", 26, 'h'));
+		alumnosList.add(new Person("Arkaitz", 0, 'h'));
+		alumnosList.add(new Person("Veronica", 0, 'm'));
+		alumnosList.add(new Person("EderIbañez", 0, 'h'));
+		alumnosList.add(new Person("JonAntolin", 0, 'h'));
+		alumnosList.add(new Person("Asier", 0, 'h'));
+		alumnosList.add(new Person("Manu", 0, 'h'));
+		alumnosList.add(new Person("EderSerna", 0, 'h'));
+		alumnosList.add(new Person("Jose Luis", 0, 'h'));
+		alumnosList.add(new Person("Aritz", 0, 'h'));
+		alumnosList.add(new Person("Mounir", 0, 'h'));
+		alumnosList.add(new Person("Jon Carrasco", 0, 'h'));
+		alumnosList.add(new Person("Gaizka", 0, 'h'));
+		alumnosList.add( new Person("Eduardo", 0, 'h'));
+		alumnosList.add(new Person("Borja", 0, 'h'));
 
 		int n = (int) (Math.random() * alumnosList.size());
 
 		// mostrar voluntario para leer
 		System.out.println(alumnosList.get(n));
-		
+
 		// declarar array con nombre alumnos
 
 		String[] alumnos = { "Andoni", "Arkaitz", "Veronica", "EderIbañez", "JonAntolin", "Asier", "Manu", "EderSerna",
