@@ -2,13 +2,14 @@ package com.ipartek.formacion;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
 
-public class MenuVoluntarios {
+import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
+
+public class MenuVoluntarioDAO {
 
 	static Scanner sc = null;
-
+	static DAOAlumnoArrayList dao;
 	static final ArrayList<Alumno> LISTA = new ArrayList<Alumno>();
 	static final int OPCION_LISTAR = 1;
 	static final int OPCION_CREAR = 2;
@@ -19,8 +20,9 @@ public class MenuVoluntarios {
 
 	public static void main(String[] args) {
 
+		dao = new DAOAlumnoArrayList();
 		inicializarLista();
-
+		
 		sc = new Scanner(System.in);
 		boolean salir = false;
 
@@ -69,8 +71,8 @@ public class MenuVoluntarios {
 	}
 
 	private static void listarAlumnos() {
-		Collections.sort(LISTA);
-		for (Alumno alumno : LISTA) {
+		Collections.sort(dao.getAll());
+		for (Alumno alumno : dao.getAll()) {
 			System.out.println(alumno.getNombre() + "   " + alumno.getRanking());
 		}
 
@@ -78,21 +80,21 @@ public class MenuVoluntarios {
 
 	private static void inicializarLista() {
 
-		LISTA.add(new Alumno("Andoni"));
-		LISTA.add(new Alumno("Arkaitz"));
-		LISTA.add(new Alumno("Veronica"));
-		LISTA.add(new Alumno("EderIbañez"));
-		LISTA.add(new Alumno("JonAntolin"));
-		LISTA.add(new Alumno("Asier"));
-		LISTA.add(new Alumno("Manu"));
-		LISTA.add(new Alumno("EderSerna"));
-		LISTA.add(new Alumno("Jose Luis"));
-		LISTA.add(new Alumno("Aritz"));
-		LISTA.add(new Alumno("Mounir"));
-		LISTA.add(new Alumno("Jon Carrasco"));
-		LISTA.add(new Alumno("Gaizka"));
-		LISTA.add(new Alumno("Eduardo"));
-		LISTA.add(new Alumno("Borja"));
+		dao.insert(new Alumno(1, "Andoni"));
+		dao.insert(new Alumno(2, "Arkaitz"));
+		dao.insert(new Alumno(3, "Veronica"));
+		dao.insert(new Alumno(4, "EderIbañez"));
+		dao.insert(new Alumno(5, "JonAntolin"));
+		dao.insert(new Alumno(6, "Asier"));
+		dao.insert(new Alumno(7, "Manu"));
+		dao.insert(new Alumno(8, "EderSerna"));
+		dao.insert(new Alumno(9, "Jose Luis"));
+		dao.insert(new Alumno(10, "Aritz"));
+		dao.insert(new Alumno(11, "Mounir"));
+		dao.insert(new Alumno(12, "Jon Carrasco"));
+		dao.insert(new Alumno(13, "Gaizka"));
+		dao.insert(new Alumno(14, "Eduardo"));
+		dao.insert(new Alumno(15, "Borja"));
 
 	}
 
@@ -102,27 +104,30 @@ public class MenuVoluntarios {
 
 		while (!salir) {
 
-			int n = (int) (Math.random() * LISTA.size());
-			for (int i = 0; i < LISTA.size(); i++) {
-				if (i == n && !ultimoVoluntario.equals(LISTA.get(i).getNombre())) {
-					System.out.println("***"+LISTA.get(n).getNombre());
-					ultimoVoluntario = LISTA.get(n).getNombre();
-					LISTA.get(n).aumentarPuntos();
+			int n = (int) (Math.random() * dao.getAll().size());
+			int contador = -1;
+			for (Alumno a : dao.getAll()) {
+				contador++;
+				if (contador == n && !ultimoVoluntario.equals(a.getNombre())) {
+					System.out.println("***" + a.getNombre());
+					ultimoVoluntario = a.getNombre();
+					a.aumentarPuntos();
 					salir = true;
 				} else {
-					System.out.println(LISTA.get(i).getNombre());
+					System.out.println(a.getNombre());
 				}
-			}	
+
+			}
 		}
 	}
 
 	private static void eliminarAlumno() {
 		listarAlumnos();
 		System.out.println("****** INTRODUCE EL ALUMNO QUE QUIERES ELIMINAR ******");
-		int alumElim;
+		int iElim;
 		try {
-			alumElim = Integer.parseInt(sc.nextLine());
-			LISTA.remove(alumElim);
+			iElim = Integer.parseInt(sc.nextLine());
+			dao.delete(dao.getAll().get(iElim).getId());
 			System.out.println("****** EL ALUMNO HA SIDO ELIMINADO CORRECTAMENTE ******");
 		} catch (Exception e) {
 			System.out.println("****** EL NUMERO INTRODUCIDO NO ES VALIDO ******");
@@ -133,7 +138,7 @@ public class MenuVoluntarios {
 		System.out.println("****** VAMOS A CREAR UN ALUMNO ******");
 		System.out.println("****** INTRODUCE EL NOMBRE DEL ALUMNO ******");
 		String nombre = sc.nextLine();
-		LISTA.add(new Alumno(nombre));
+		dao.insert(new Alumno(dao.getAll().size(), nombre));
 		System.out.println("****** EL ALUMNO " + nombre.toUpperCase() + " HA SIDO CREADO ******");
 
 	}

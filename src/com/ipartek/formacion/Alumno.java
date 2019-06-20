@@ -13,6 +13,12 @@ public class Alumno extends Person implements Comparable<Alumno>{
 		this.ranking = 0;
 	}
 	
+	public Alumno(int id,String nombre) {
+		super(nombre);
+		setId(id);
+		this.ranking = 0;
+	}
+	
 	public int getRanking() {
 		return this.ranking;
 	}
