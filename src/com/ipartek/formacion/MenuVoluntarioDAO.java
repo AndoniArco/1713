@@ -17,11 +17,13 @@ public class MenuVoluntarioDAO {
 	static final int OPCION_VOLUNTARIO = 4;
 	static final int OPCION_SALIR = 5;
 	static String ultimoVoluntario = "";
+	static int nextID;
 
 	public static void main(String[] args) {
 
 		dao = new DAOAlumnoArrayList();
 		inicializarLista();
+		nextID = dao.getAll().size()+1;
 		
 		sc = new Scanner(System.in);
 		boolean salir = false;
@@ -73,7 +75,7 @@ public class MenuVoluntarioDAO {
 	private static void listarAlumnos() {
 		Collections.sort(dao.getAll());
 		for (Alumno alumno : dao.getAll()) {
-			System.out.println(alumno.getNombre() + "   " + alumno.getRanking());
+			System.out.println("ID: "+alumno.getId()+" "+alumno.getNombre() + "   " + alumno.getRanking());
 		}
 
 	}
@@ -123,11 +125,11 @@ public class MenuVoluntarioDAO {
 
 	private static void eliminarAlumno() {
 		listarAlumnos();
-		System.out.println("****** INTRODUCE EL ALUMNO QUE QUIERES ELIMINAR ******");
+		System.out.println("****** INTRODUCE EL ID DEL ALUMNO QUE QUIERES ELIMINAR ******");
 		int iElim;
 		try {
 			iElim = Integer.parseInt(sc.nextLine());
-			dao.delete(dao.getAll().get(iElim).getId());
+			dao.delete(iElim);
 			System.out.println("****** EL ALUMNO HA SIDO ELIMINADO CORRECTAMENTE ******");
 		} catch (Exception e) {
 			System.out.println("****** EL NUMERO INTRODUCIDO NO ES VALIDO ******");
@@ -138,7 +140,8 @@ public class MenuVoluntarioDAO {
 		System.out.println("****** VAMOS A CREAR UN ALUMNO ******");
 		System.out.println("****** INTRODUCE EL NOMBRE DEL ALUMNO ******");
 		String nombre = sc.nextLine();
-		dao.insert(new Alumno(dao.getAll().size(), nombre));
+		dao.insert(new Alumno(nextID, nombre));
+		nextID++;
 		System.out.println("****** EL ALUMNO " + nombre.toUpperCase() + " HA SIDO CREADO ******");
 
 	}
