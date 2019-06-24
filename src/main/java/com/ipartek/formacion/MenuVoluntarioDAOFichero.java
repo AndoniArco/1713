@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
 
-public class MenuVoluntarioDAO {
+public class MenuVoluntarioDAOFichero {
 
 	static Scanner sc = null;
 	static DAOAlumnoArrayList dao;
@@ -18,6 +18,8 @@ public class MenuVoluntarioDAO {
 	static final int OPCION_SALIR = 5;
 	static String ultimoVoluntario = "";
 	static int nextID;
+	static int opcion;
+	static Alumno anterior = new Alumno(-1,""); 
 
 	public static void main(String[] args) {
 
@@ -25,8 +27,8 @@ public class MenuVoluntarioDAO {
 		inicializarLista();
 		nextID = dao.getAll().size()+1;
 		
+		
 		sc = new Scanner(System.in);
-		boolean salir = false;
 
 		System.out.println("****** BIENVENIDO AL MENU DE VOLUNTARIOS ******");
 
@@ -42,7 +44,7 @@ public class MenuVoluntarioDAO {
 			System.out.println();
 
 			try {
-				int opcion = Integer.parseInt(sc.nextLine());
+				opcion = Integer.parseInt(sc.nextLine());
 
 				switch (opcion) {
 				case OPCION_LISTAR:
@@ -57,9 +59,6 @@ public class MenuVoluntarioDAO {
 				case OPCION_VOLUNTARIO:
 					buscarVoluntario();
 					break;
-				case 5:
-					salir = true;
-					break;
 
 				default:
 					break;
@@ -68,7 +67,7 @@ public class MenuVoluntarioDAO {
 				System.out.println("EL DATO INTRODUCIDO NO ES UN NUMERO");
 			}
 
-		} while (!salir);
+		} while (opcion != OPCION_SALIR);
 
 	}
 
@@ -121,7 +120,7 @@ public class MenuVoluntarioDAO {
 
 			}
 		}
-	}
+	}//buscarVoluntario
 
 	private static void eliminarAlumno() {
 		listarAlumnos();
@@ -134,7 +133,7 @@ public class MenuVoluntarioDAO {
 		} catch (Exception e) {
 			System.out.println("****** EL NUMERO INTRODUCIDO NO ES VALIDO ******");
 		}
-	}
+	}//eliminarAlumno
 
 	private static void crearAlumno() {
 		System.out.println("****** VAMOS A CREAR UN ALUMNO ******");

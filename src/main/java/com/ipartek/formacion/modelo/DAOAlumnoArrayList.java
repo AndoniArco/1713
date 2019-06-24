@@ -6,8 +6,20 @@ import com.ipartek.formacion.Alumno;
 
 public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
+	
+	private static DAOAlumnoArrayList INSTANCE;
 	private ArrayList<Alumno> lista;
 
+	public static synchronized DAOAlumnoArrayList getInstance(){
+		
+		if ( INSTANCE == null ) {
+			INSTANCE = new DAOAlumnoArrayList();
+		}
+		
+		return INSTANCE;
+		
+	}
+	
 	public DAOAlumnoArrayList() {
 		super();
 		lista = new ArrayList<Alumno>();
