@@ -1,15 +1,17 @@
 package com.ipartek.formacion;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import com.ipartek.formacion.colecciones.FicheroAlumnos;
 import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
 
 public class MenuVoluntarioDAOFichero {
 
 	static Scanner sc = null;
-	static DAOAlumnoArrayList dao;
 	static final ArrayList<Alumno> LISTA = new ArrayList<Alumno>();
 	static final int OPCION_LISTAR = 1;
 	static final int OPCION_CREAR = 2;
@@ -21,11 +23,10 @@ public class MenuVoluntarioDAOFichero {
 	static int opcion;
 	static Alumno anterior = new Alumno(-1,""); 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
-		dao = new DAOAlumnoArrayList();
 		inicializarLista();
-		nextID = dao.getAll().size()+1;
+		nextID = DAOAlumnoArrayList.getInstance().getAll().size()+1;
 		
 		
 		sc = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class MenuVoluntarioDAOFichero {
 
 		do {
 			System.out.println();
-			System.out.println("****** ELIJA UNA OPCIÓN ******");
+			System.out.println("****** ELIJA UNA OPCIï¿½N ******");
 			System.out.println();
 			System.out.println("1) LISTAR ALUMNOS + RANKING");
 			System.out.println("2) CREAR ALUMNOS");
@@ -69,34 +70,24 @@ public class MenuVoluntarioDAOFichero {
 
 		} while (opcion != OPCION_SALIR);
 
+		FicheroAlumnos.crearFichero();
+		
 	}
 
 	private static void listarAlumnos() {
-		Collections.sort(dao.getAll());
-		for (Alumno alumno : dao.getAll()) {
+		Collections.sort(DAOAlumnoArrayList.getInstance().getAll());
+		for (Alumno alumno : DAOAlumnoArrayList.getInstance().getAll()) {
 			System.out.println("ID: "+alumno.getId()+" "+alumno.getNombre() + "   " + alumno.getRanking());
 		}
 
 	}
 
-	private static void inicializarLista() {
+	private static void inicializarLista() throws FileNotFoundException, ClassNotFoundException, IOException {
+		
+		FicheroAlumnos.importarFichero();
 
-		dao.insert(new Alumno(1, "Andoni"));
-		dao.insert(new Alumno(2, "Arkaitz"));
-		dao.insert(new Alumno(3, "Veronica"));
-		dao.insert(new Alumno(4, "EderIbañez"));
-		dao.insert(new Alumno(5, "JonAntolin"));
-		dao.insert(new Alumno(6, "Asier"));
-		dao.insert(new Alumno(7, "Manu"));
-		dao.insert(new Alumno(8, "EderSerna"));
-		dao.insert(new Alumno(9, "Jose Luis"));
-		dao.insert(new Alumno(10, "Aritz"));
-		dao.insert(new Alumno(11, "Mounir"));
-		dao.insert(new Alumno(12, "Jon Carrasco"));
-		dao.insert(new Alumno(13, "Gaizka"));
-		dao.insert(new Alumno(14, "Eduardo"));
-		dao.insert(new Alumno(15, "Borja"));
-
+		//DAOAlumnoArrayList.getInstance().cargarAlumnos();
+		
 	}
 
 	private static void buscarVoluntario() {
@@ -105,9 +96,9 @@ public class MenuVoluntarioDAOFichero {
 
 		while (!salir) {
 
-			int n = (int) (Math.random() * dao.getAll().size());
+			int n = (int) (Math.random() * DAOAlumnoArrayList.getInstance().getAll().size());
 			int contador = -1;
-			for (Alumno a : dao.getAll()) {
+			for (Alumno a : DAOAlumnoArrayList.getInstance().getAll()) {
 				contador++;
 				if (contador == n && !ultimoVoluntario.equals(a.getNombre())) {
 					System.out.println("***" + a.getNombre());
@@ -128,21 +119,21 @@ public class MenuVoluntarioDAOFichero {
 		int iElim;
 		try {
 			iElim = Integer.parseInt(sc.nextLine());
-			dao.delete(iElim);
+			DAOAlumnoArrayList.getInstance().delete(iElim);
 			System.out.println("****** EL ALUMNO HA SIDO ELIMINADO CORRECTAMENTE ******");
 		} catch (Exception e) {
 			System.out.println("****** EL NUMERO INTRODUCIDO NO ES VALIDO ******");
 		}
 	}//eliminarAlumno
 
-	private static void crearAlumno() {
+	private static void crearAlumno() throws Exception {
 		System.out.println("****** VAMOS A CREAR UN ALUMNO ******");
 		System.out.println("****** INTRODUCE EL NOMBRE DEL ALUMNO ******");
 		String nombre = sc.nextLine();
-		dao.insert(new Alumno(nextID, nombre));
+		DAOAlumnoArrayList.getInstance().insert(new Alumno(nextID, nombre));
 		nextID++;
 		System.out.println("****** EL ALUMNO " + nombre.toUpperCase() + " HA SIDO CREADO ******");
-
+		FicheroAlumnos.crearFichero();
 	}
 
 }

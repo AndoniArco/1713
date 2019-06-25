@@ -31,6 +31,25 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 		return lista;
 	}
 
+	public void cargarAlumnos() {
+		insert(new Alumno(1, "Andoni"));
+		insert(new Alumno(2, "Arkaitz"));
+		insert(new Alumno(3, "Veronica"));
+		insert(new Alumno(4, "EderIba�ez"));
+		insert(new Alumno(5, "JonAntolin"));
+		insert(new Alumno(6, "Asier"));
+		insert(new Alumno(7, "Manu"));
+		insert(new Alumno(8, "EderSerna"));
+		insert(new Alumno(9, "Jose Luis"));
+		insert(new Alumno(10, "Aritz"));
+		insert(new Alumno(11, "Mounir"));
+		insert(new Alumno(12, "Jon Carrasco"));
+		insert(new Alumno(13, "Gaizka"));
+		insert(new Alumno(14, "Eduardo"));
+		insert(new Alumno(15, "Borja"));
+
+	}
+	
 	@Override
 	public Alumno getById(int id) {
 		Alumno resul = null;

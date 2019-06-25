@@ -20,8 +20,6 @@ public class Ejercicio1 {
 			System.out.println("Su numero es " + numero);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Mensaje Excepcion "+e.getMessage());
 			System.out.println("*** TE DIJE UN NUMERO***");
 		} finally {
 

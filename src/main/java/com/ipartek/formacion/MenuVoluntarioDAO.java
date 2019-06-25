@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import com.ipartek.formacion.colecciones.FicheroAlumnos;
 import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
 
 public class MenuVoluntarioDAO {
@@ -21,7 +22,7 @@ public class MenuVoluntarioDAO {
 	static int opcion;
 	static Alumno anterior = new Alumno(-1,""); 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		dao = new DAOAlumnoArrayList();
 		inicializarLista();
@@ -34,7 +35,7 @@ public class MenuVoluntarioDAO {
 
 		do {
 			System.out.println();
-			System.out.println("****** ELIJA UNA OPCIÓN ******");
+			System.out.println("****** ELIJA UNA OPCION ******");
 			System.out.println();
 			System.out.println("1) LISTAR ALUMNOS + RANKING");
 			System.out.println("2) CREAR ALUMNOS");
@@ -68,7 +69,9 @@ public class MenuVoluntarioDAO {
 			}
 
 		} while (opcion != OPCION_SALIR);
-
+		
+		FicheroAlumnos.crearFichero();
+		
 	}
 
 	private static void listarAlumnos() {
@@ -80,23 +83,8 @@ public class MenuVoluntarioDAO {
 	}
 
 	private static void inicializarLista() {
-
-		dao.insert(new Alumno(1, "Andoni"));
-		dao.insert(new Alumno(2, "Arkaitz"));
-		dao.insert(new Alumno(3, "Veronica"));
-		dao.insert(new Alumno(4, "EderIbañez"));
-		dao.insert(new Alumno(5, "JonAntolin"));
-		dao.insert(new Alumno(6, "Asier"));
-		dao.insert(new Alumno(7, "Manu"));
-		dao.insert(new Alumno(8, "EderSerna"));
-		dao.insert(new Alumno(9, "Jose Luis"));
-		dao.insert(new Alumno(10, "Aritz"));
-		dao.insert(new Alumno(11, "Mounir"));
-		dao.insert(new Alumno(12, "Jon Carrasco"));
-		dao.insert(new Alumno(13, "Gaizka"));
-		dao.insert(new Alumno(14, "Eduardo"));
-		dao.insert(new Alumno(15, "Borja"));
-
+		
+		dao.cargarAlumnos();
 	}
 
 	private static void buscarVoluntario() {

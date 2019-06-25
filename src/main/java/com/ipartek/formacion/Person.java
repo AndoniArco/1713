@@ -1,10 +1,12 @@
 package com.ipartek.formacion;
 
+import java.io.Serializable;
+
 //TODO Hacer un constructor donde la persona por defecto va a tener nombre = Anonimo, 
-//	   edad = 18 años, altura = 0, peso = 0, ojos = marrones, sexo = i. Sobrecargar la persona
+//	   edad = 18 aï¿½os, altura = 0, peso = 0, ojos = marrones, sexo = i. Sobrecargar la persona
 //	   indicando nombre, edad y sexo
 
-public class Person {
+public class Person implements Serializable{
 
 	// atributos
 	private int id;

@@ -36,7 +36,7 @@ public class EjercicioPerro {
 					}
 				}
 				if (auxVacunado == null) {
-					System.out.println("¿Se encuentra el perro vacunado?(S/N)");
+					System.out.println("ï¿½Se encuentra el perro vacunado?(S/N)");
 					auxVacunado = sc.nextLine();
 					if (auxVacunado.equalsIgnoreCase("S")) {
 
@@ -55,7 +55,8 @@ public class EjercicioPerro {
 			} catch (Exception e) {
 				// TODO: handle exception sEdad,
 				repetir = true;
-				System.out.println("El dato introducido no es valido.");
+				System.out.println(e.getMessage());
+			//	System.out.println("El dato introducido no es valido.");
 			}
 
 		} while (repetir);
